@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <style>
+        body { 
+            font-family: Arial, sans-serif; 
+            max-width: 800px; 
+            margin: 0 auto; 
+            padding: 20px;
+            line-height: 1.6;
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+        }
+        .auth-links a {
+            margin-left: 15px;
+            text-decoration: none;
+            color: #007bff;
+        }
+        .auth-links a:hover {
+            text-decoration: underline;
+        }
+        .welcome-message {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        .btn {
+            display: inline-block;
+            padding: 8px 15px;
+            background: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+        }
+        .btn:hover {
+            background: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Welcome to Our Site</h1>
+        <div class="auth-links">
+            <% if (locals.user) { %>
+                <span>Hello, <%= user.username %>!</span>
+                <a href="/logout">Logout</a>
+            <% } else { %>
+                <a href="/login">Login</a>
+                <a href="/register">Register</a>
+            <% } %>
+        </div>
+    </div>
+
+    <% if (locals.user) { %>
+        <div class="welcome-message">
+            <h2>Welcome back!</h2>
+            <p>You're logged in as <strong><%= user.email %></strong>.</p>
+            <p>Start exploring your dashboard or <a href="/profile">view your profile</a>.</p>
+        </div>
+    <% } else { %>
+        <div class="welcome-message">
+            <h2>Get Started</h2>
+            <p>Join our community today to access exclusive features!</p>
+            <a href="/register" class="btn">Create an Account</a>
+            <p>Already have an account? <a href="/login">Sign in here</a>.</p>
+        </div>
+    <% } %>
+
+    <div class="features">
+        <h2>Features</h2>
+        <ul>
+            <li>Secure authentication</li>
+            <li>User profiles</li>
+            <li>Responsive design</li>
+        </ul>
+    </div>
+</body>
+</html>
