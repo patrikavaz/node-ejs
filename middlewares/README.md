@@ -1,0 +1,1 @@
+is Authenticated function JS
